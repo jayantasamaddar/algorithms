@@ -554,25 +554,374 @@ A breadth-first search explores all the nodes in the given level before continui
   - Inspect both its child subtrees - if the children are not null, they are each enqueued.
   - This process continues until the queue is empty.
 
+**Full Binary Search Tree with Height and Traversal**
+
+```
+class Node {
+  constructor(data, left = null, right = null) {
+    this.data = data;
+    this.left = left;
+    this.right = right;
+  }
+}
+
+class BST {
+  constructor() {
+    this.root = null;
+  }
+
+  /** Add a new Node */
+  add(data) {
+    const node = this.root;
+    if (node === null) {
+      this.root = new Node(data);
+      return;
+    } else {
+      const searchTree = function (node) {
+        if (data < node.data) {
+          if (node.left === null) {
+            node.left = new Node(data);
+            return;
+          } else if (node.left !== null) {
+            /** If the left node has a value, continue searching */
+            return searchTree(node.left);
+          }
+        } else if (data > node.data) {
+          if (node.right === null) {
+            node.right = new Node(data);
+            return;
+          } else if (node.right !== null) {
+            /** If the right node has a value, continue searching */
+            return searchTree(node.right);
+          }
+        } else return null;
+      };
+
+      return searchTree(node);
+    }
+  }
+
+  /** Find node with minimum value */
+  min() {
+    let current = this.root;
+    while (current.left !== null) {
+      current = current.left;
+    }
+    return current.data;
+  }
+
+  /** Find node with maximum value */
+  max() {
+    let current = this.root;
+    while (current.right !== null) {
+      current = current.right;
+    }
+    return current.data;
+  }
+
+  /** Find if node with value is present */
+  isPresent(data) {
+    let current = this.root;
+    while (current) {
+      if (data === current.data) {
+        return true;
+      }
+      if (data < current.data) {
+        current = current.left;
+      } else {
+        current = current.right;
+      }
+    }
+    return false;
+  }
+
+  /** Removes Node with value */
+  remove(data) {
+    const removeNode = function (node, data) {
+      if (node === null) {
+        return null;
+      }
+
+      if (data === node.data) {
+        // node has no children
+        if (node.left === null && node.right === null) {
+          return null;
+        }
+
+        // node has no left child
+        if (node.left === null) {
+          return node.right;
+        }
+
+        // node has no right child
+        if (node.right === null) {
+          return node.left;
+        }
+
+        // node has two children
+        let tempNode = node.right;
+        while (tempNode.left !== null) {
+          tempNode = tempNode.left;
+        }
+        // replace with the node data
+        node.data = tempNode.data;
+        node.right = removeNode(node.right, tempNode.data);
+        return node;
+      } else if (data < node.data) {
+        node.left = removeNode(node.left, data);
+        return node;
+      } else {
+        node.right = removeNode(node.right, data);
+        return node;
+      }
+    };
+    this.root = removeNode(this.root, data);
+  }
+
+  /** Whether the Binary Tree is balanced */
+  isBalanced() {
+    return this.maxHeight() - this.minHeight() >= 1;
+  }
+
+  /** The distance between the root node and the first node that doesn't have two children. */
+  minHeight(node = this.root) {
+    if (node === null) return -1;
+
+    let left = this.minHeight(node.left);
+    let right = this.minHeight(node.right);
+
+    if (left < right) {
+      return left + 1;
+    } else return right + 1;
+  }
+
+  /** The distance between the root node and the bottom-most node. */
+  maxHeight(node = this.root) {
+    if (node === null) return -1;
+
+    let left = this.maxHeight(node.left);
+    let right = this.maxHeight(node.right);
+
+    if (left > right) {
+      return left + 1;
+    } else return right + 1;
+  }
+
+  /** Traversing the Binary-Tree */
+  /** In-Order Search */
+  inOrder() {
+    if (this.root === null) return null;
+    else {
+      const result = [];
+      function traverseInOrder(node) {
+        node.left && traverseInOrder(node.left);
+        result.push(node.data);
+        node.right && traverseInOrder(node.right);
+      }
+      traverseInOrder(this.root);
+      return result;
+    }
+  }
+
+  /** Pre-Order Search */
+  preOrder() {
+    if (this.root === null) return null;
+    else {
+      const result = [];
+      function traverseInOrder(node) {
+        result.push(node.data);
+        node.left && traverseInOrder(node.left);
+        node.right && traverseInOrder(node.right);
+      }
+      traverseInOrder(this.root);
+      return result;
+    }
+  }
+
+  /** Pre-Order Search */
+  postOrder() {
+    if (this.root === null) return null;
+    else {
+      const result = [];
+      function traverseInOrder(node) {
+        node.left && traverseInOrder(node.left);
+        node.right && traverseInOrder(node.right);
+        result.push(node.data);
+      }
+      traverseInOrder(this.root);
+      return result;
+    }
+  }
+
+  /** Pre-Order Search */
+  levelOrder() {
+    const result = [];
+    const Q = [];
+    if (this.root === null) return null;
+    else {
+      Q.push(this.root);
+      while (Q.length > 0) {
+        const node = Q.shift();
+        result.push(node.data);
+        if (node.left !== null) {
+          Q.push(node.left);
+        }
+        if (node.right !== null) {
+          Q.push(node.right);
+        }
+      }
+      return result;
+    }
+  }
+}
+```
+
 ---
 
 # Hash Table
 
 A Hash Table is a data structure used to implement associative arrays or mappings of key-value pairs.
 
-Hash Tables are a common way to implement the map data structure or objects. They are widely used because of how efficient they are. The average time for each lookup is not tied to the number of elements in the table.
+Hash Tables are a common way to implement the map data structure or objects. They are widely used because of how efficient they are. The average time for each lookup is not tied to the number of elements in the table. Hash Table uses an array as a storage medium and uses hash technique to generate an index where an element is to be inserted or is to be located from.
 
 The average time complexity in Big O' Notation is O(1) for Search, Insert and Delete. That's very fast!
+
+### Hashing
+
+Hashing is a technique to convert a range of key values into a range of indexes of an array. We're going to use modulo operator to get a range of key values. Consider an example of hash table of size 20, and the following items are to be stored. Item are in the (key,value) format.
+
+![Hashing](https://www.tutorialspoint.com/data_structures_algorithms/images/hash_function.jpg)
+
+- (1,20)
+- (2,70)
+- (42,80)
+- (4,25)
+- (12,44)
+- (14,32)
+- (17,11)
+- (13,78)
+- (37,98)
+
+SN. | Key   |	Hash 	        | Array Index
+--- | ---   | ---           | ---
+1 	| 1     | 1 % 20 = 1	  | 1
+2 	| 2 	  | 2 % 20 = 2    | 2
+3 	| 42 	  | 42 % 20 = 2 	| 2
+4 	| 4 	  | 4 % 20 = 4 	  | 4
+5 	| 12 	  | 12 % 20 = 12 	| 12
+6 	| 14 	  | 14 % 20 = 14 	| 14
+7 	| 17 	  | 17 % 20 = 17 	| 17
+8 	| 13 	  | 13 % 20 = 13 	| 13
+9 	| 37 	  | 37 % 20 = 17 	| 17
+
+### Linear Probing
+
+As we can see, it may happen that the hashing technique is used to create an already used index of the array. In such a case, we can search the next empty location in the array by looking into the next cell until we find an empty cell. This technique is called linear probing.
+
+SN. | Key   |	Hash 	        | Array Index   | Array Index (after Linear Probing)
+--- | ---   | ---           | ---           | ---
+1 	| 1     | 1 % 20 = 1	  | 1             | 1
+2 	| 2 	  | 2 % 20 = 2    | 2             | 2
+3 	| 42 	  | 42 % 20 = 2 	| 2             | 3
+4 	| 4 	  | 4 % 20 = 4 	  | 4             | 4
+5 	| 12 	  | 12 % 20 = 12 	| 12            | 12
+6 	| 14 	  | 14 % 20 = 14 	| 14            | 14
+7 	| 17 	  | 17 % 20 = 17 	| 17            | 17
+8 	| 13 	  | 13 % 20 = 13 	| 13            | 13
+9 	| 37 	  | 37 % 20 = 17 	| 17            | 18
+
+### Basic Operations
+
+Following are the basic primary operations of a hash table.
+
+- **Search** − Searches an element in a hash table.
+
+- **Insert** − inserts an element in a hash table.
+
+- **Delete** − Deletes an element from a hash table.
+
 
 **Exercise:**
 Build the Hash Table from scratch in JavaScript.
 
 ```
+/** Hash Table */
 
+const hash = (string, max) => {
+  let key = 0;
+  for (let i = 0; i < string.length; i++) {
+    key += string.charCodeAt(i);
+  }
+  return key % max;
+};
+
+const HashTable = function () {
+  const storage = [];
+
+  const storageLimit = 4;
+
+  this.print = function () {
+    console.log(storage);
+  };
+
+  /** Add Element to Hash Table */
+  this.add = function (key, value) {
+    var index = hash(key, storageLimit);
+
+    if (storage[index] === undefined) {
+      storage[index] = [[key, value]];
+    } else {
+      let inserted = false;
+      for (let i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index][i][1] === value;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        storage[index].push([key, value]);
+      }
+    }
+  };
+
+  /** Remove Element from Hash Table */
+  this.remove = function (key) {
+    var index = hash(key, storageLimit);
+
+    if (storage[index].length && storage[index][0][0] === key) {
+      delete storage[index];
+    } else {
+      for (let i = 0; i < storage[index]; i++) {
+        if (storage[index][i][0] === key) {
+          delete storage[index][i];
+        }
+      }
+    }
+  };
+
+  /** Lookup Element in Hash Table */
+  this.lookup = function (key) {
+    var index = hash(key, storageLimit);
+
+    if (storage[index] === undefined) return;
+    else {
+      for (let i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          return storage[index][i][1];
+        }
+      }
+    }
+  };
+};
 ```
 
 Where,
 
 - `string` - The string we are going to hash.
 - `max` - The number of buckets that we are using in our hash table to store values.
--
+- `key` - An integer between 0 and 65535 representing the UTF-16 code unit at the given index. The charCodeAt() method returns this value of the given index of the string.
+
+---
+
+# Linked List
+
