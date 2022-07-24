@@ -169,12 +169,12 @@ class BST {
     if (this.root === null) return null;
     else {
       const result = [];
-      function traverseInOrder(node) {
+      function traversePreOrder(node) {
         result.push(node.data);
-        node.left && traverseInOrder(node.left);
-        node.right && traverseInOrder(node.right);
+        node.left && traversePreOrder(node.left);
+        node.right && traversePreOrder(node.right);
       }
-      traverseInOrder(this.root);
+      traversePreOrder(this.root);
       return result;
     }
   }
@@ -184,17 +184,17 @@ class BST {
     if (this.root === null) return null;
     else {
       const result = [];
-      function traverseInOrder(node) {
-        node.left && traverseInOrder(node.left);
-        node.right && traverseInOrder(node.right);
+      function traversePostOrder(node) {
+        node.left && traversePostOrder(node.left);
+        node.right && traversePostOrder(node.right);
         result.push(node.data);
       }
-      traverseInOrder(this.root);
+      traversePostOrder(this.root);
       return result;
     }
   }
 
-  /** Pre-Order Search */
+  /** Level-Order Search */
   levelOrder() {
     const result = [];
     const Q = [];

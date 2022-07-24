@@ -41,6 +41,10 @@ const Trie = function () {
     return node.keys.has(input) && node.keys.get(input).isEnd() ? true : false;
   };
 
+  this.printroot = function () {
+    return this.root;
+  };
+
   /** Print all the words in the Trie */
   this.print = function () {
     const words = [];
@@ -77,3 +81,4 @@ console.log(myTrie.find('doll')); // true
 console.log(myTrie.find('dor')); // false
 console.log(myTrie.find('dorf')); // false
 console.log(myTrie.print()); // [ 'ball', 'bat', 'doll', 'dork', 'dorm', 'do', 'send', 'sense' ]
+console.log(myTrie.printroot());

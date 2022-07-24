@@ -1,15 +1,5 @@
-/** Greedy Algorithm Example */
-
-function greedy(arr) {
-  const solution = [];
-  for (let i = 0; i < arr.length; i++) {
-    const x = select(arr);
-    if (isFeasible(x)) solution.push(x);
-  }
-  return solution;
-}
-
-/** Knapsack Problem - Objects are Divisible (can be fractions)
+/**
+ * Knapsack Problem 1 - Objects are Divisible (can be fractions)
  * E.g. Fruits, vegetables, groceries that can be measured by weight in fractions
  */
 
@@ -60,79 +50,23 @@ function findMax(arr, max) {
 /** Test */
 
 const objects = [
-  {
-    id: 1,
-    weight: 2,
-    profit: 10,
-  },
-  {
-    id: 2,
-    weight: 3,
-    profit: 5,
-  },
-  {
-    id: 3,
-    weight: 5,
-    profit: 15,
-  },
-  {
-    id: 4,
-    weight: 7,
-    profit: 7,
-  },
-  {
-    id: 5,
-    weight: 1,
-    profit: 6,
-  },
-  {
-    id: 6,
-    weight: 4,
-    profit: 18,
-  },
-  {
-    id: 7,
-    weight: 1,
-    profit: 3,
-  },
+  { id: 1, weight: 2, profit: 10 },
+  { id: 2, weight: 3, profit: 5 },
+  { id: 3, weight: 5, profit: 15 },
+  { id: 4, weight: 7, profit: 7 },
+  { id: 5, weight: 1, profit: 6 },
+  { id: 6, weight: 4, profit: 18 },
+  { id: 7, weight: 1, profit: 3 },
 ];
 
 const objects2 = [
-  {
-    id: 1,
-    weight: 2,
-    profit: 10,
-  },
-  {
-    id: 2,
-    weight: 1,
-    profit: 5,
-  },
-  {
-    id: 3,
-    weight: 5,
-    profit: 15,
-  },
-  {
-    id: 4,
-    weight: 0.5,
-    profit: 7,
-  },
-  {
-    id: 5,
-    weight: 1,
-    profit: 6,
-  },
-  {
-    id: 6,
-    weight: 4,
-    profit: 18,
-  },
-  {
-    id: 7,
-    weight: 1,
-    profit: 3,
-  },
+  { id: 1, weight: 2, profit: 10 },
+  { id: 2, weight: 1, profit: 5 },
+  { id: 3, weight: 5, profit: 15 },
+  { id: 4, weight: 0.5, profit: 7 },
+  { id: 5, weight: 1, profit: 6 },
+  { id: 6, weight: 4, profit: 18 },
+  { id: 7, weight: 1, profit: 3 },
 ];
 
 console.log(findMax(objects, 15));

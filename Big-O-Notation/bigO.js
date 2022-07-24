@@ -87,7 +87,7 @@ const merge = (arr1, arr2) => {
   let j = 0;
   const mergedArr = [];
 
-  while (i < arr1.length || j < arr2.length) {
+  while (i < arr1.length && j < arr2.length) {
     if (arr1[i] < arr2[j]) mergedArr.push(arr1[i++]);
     else mergedArr.push(arr2[j++]);
   }

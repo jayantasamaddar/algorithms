@@ -1229,7 +1229,7 @@ Binary Heaps may be implemented as tree structures with nodes that contain left 
 However, Heaps are more often implemented as arrays. This is possible because of the partial ordering because of the heap property. We can just compute the parent-child relationship of the elements.
 
 ### Heap Sort
-A common use for the heap data structure is the Heap Sort. This is one of the most efficient sorting algorithms with average and worst-case performance of `O(n log(n))`.
+A common use for the heap data structure is the Heap Sort. This is one of the most efficient sorting algorithms with average and worst-case performance of `O(n log n)`.
 
 When sorting in ascending order,
 Heap sort works by taking an unsorted array, adding each item of the array into a Min Heap and then extracting every item of the Min Heap into the new Array. The min Heap structure ensures that the new array will contain the original items in least to greatest order.
