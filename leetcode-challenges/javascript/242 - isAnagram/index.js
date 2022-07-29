@@ -56,6 +56,8 @@ var isAnagram = function (s, t) {
     }
   }
 
+  if (sMap.size !== tMap.size) return false;
+
   for (const [key, val] of sMap) {
     if (val !== tMap.get(key)) return false;
   }
@@ -74,6 +76,38 @@ var isAnagram = function (s, t) {
   return s.split('').sort().join('') === t.split('').sort().join('');
 };
 
+/**
+ * Method 3 - Using Object as Hash Table
+ * [Runtime: 85 ms, faster than 92.06% of JavaScript online submissions for Valid Anagram.]
+ * [Memory Usage: 43.5 MB, less than 69.62% of JavaScript online submissions for Valid Anagram.]
+ */
+
+var isAnagram = function (s, t) {
+  if (s.length < 1 || t.length > 5 * Math.pow(10, 4) || s.length !== t.length) {
+    return false;
+  }
+
+  const sHash = {};
+  const tHash = {};
+
+  for (let i = 0; i < s.length; i++) {
+    if (sHash[s[i]]) sHash[s[i]] += 1;
+    else sHash[s[i]] = 1;
+  }
+
+  for (let i = 0; i < t.length; i++) {
+    if (tHash[t[i]]) tHash[t[i]] += 1;
+    else tHash[t[i]] = 1;
+  }
+
+  if (Object.keys(sHash).length !== Object.keys(tHash).length) return false;
+
+  for (key in sHash) {
+    if (sHash[key] !== tHash[key]) return false;
+  }
+  return true;
+};
+
 /** Testing */
 
 console.log(isAnagram('anagram', 'nagaram')); // true
@@ -81,8 +115,11 @@ console.log(isAnagram('danger', 'gander')); // true
 console.log(isAnagram('rat', 'car')); // false
 console.log(isAnagram('nameless', 'salesman')); // false
 console.log(isAnagram('danger', 'garden')); // true
+console.log(isAnagram('a', 'ab')); // false
 
 /** Test Analysis
  * ---------------
  * A Hash Table is faster!
+ * As a data structure of choice for the Hash Table,
+ * using Map is slower than using regular Javascript Objects.
  */

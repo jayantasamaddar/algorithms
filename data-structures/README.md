@@ -1369,3 +1369,4 @@ Following are basic primary operations of a Graph −
 2. [Linked List](https://www.tutorialspoint.com/data_structures_algorithms/linked_list_algorithms.htm)
 3. [Trie](https://www.geeksforgeeks.org/trie-insert-and-search/) | [Applications of Trie](https://www.geeksforgeeks.org/advantages-trie-data-structure/)
 4. [Heap](https://www.tutorialspoint.com/data_structures_algorithms/heap_data_structure.htm) | [Visualization](https://www.cs.usfca.edu/~galles/visualization/Heap.html)
+5. [JavaScript Data Structures](https://github.com/datastructures-js)
