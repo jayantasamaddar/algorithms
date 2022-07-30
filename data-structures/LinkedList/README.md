@@ -636,6 +636,30 @@ class LinkedList {
 
 ---
 
+# List of Solved Linked List Algorithms
+
+### Leetcode
+
+- [707 - Design Linked List](../../leetcode-challenges/javascript/707%20-%20DesignLinkedList/index.js)
+- [876 - Middle of the Linked List](../../leetcode-challenges/javascript/876%20-%20Middle%20of%20the%20Linked%20List/index.js)
+- [237 - Delete Node in a Linked List](../../leetcode-challenges/javascript/237%20-%20Delete%20Node%20in%20a%20Linked%20List/index.js)
+- [203 - Remove Linked List Elements](../../leetcode-challenges/javascript/203%20-%20Remove%20Linked%20List%20Elements/index.js)
+- [19 - Remove nth Node from the End of the List](../../leetcode-challenges/javascript/19%20-%20removeNthNodeFromEndofTheList/index.js)
+- [2095 - Delete the Middle Node of a Linked List](../../leetcode-challenges/javascript/2095%20-%20deleteMiddle/index.js)
+- [160 - Intersection of Two Linked Lists](../../leetcode-challenges/javascript/160%20-%20Linked%20List%20Intersection/index.js)
+- [206 - Reverse Linked List](../../leetcode-challenges/javascript/206%20-%20Reverse%20Linked%20List/index.js)
+- [141 - Linked List Cycle](../../leetcode-challenges/javascript/141%20-%20Linked%20List%20Cycle/index.js)
+- [02 - Add Two Numbers](../../leetcode-challenges/javascript/02%20-%20Add%20Two%20Numbers/index.js)
+- [24 - Swap Nodes in Pairs](../../leetcode-challenges/javascript/24%20-%20swapNodesInPairs/index.js)
+- [382 - Linked List Random Node](../../leetcode-challenges/javascript/382%20-%20Linked%20List%20Random%20Node/index.js)
+- [21 - Merge Two Sorted Linked Lists](../../leetcode-challenges/javascript/21%20-%20mergeTwoSortedLists/index.js)
+- [23 - Merge K Sorted Lists](../../leetcode-challenges/javascript/23%20-%20mergeKLists/index.js)
+
+
+---
+
 # References
 
+- [Linked List - Data Structure Construction](LinkedList.js)
 - **@datastructures-js/linkedlist | [Github](https://github.com/datastructures-js/linked-list/blob/master/LinkedList.md)**
+- [Linked List for Technical Interviews by freecodecamp.org](https://www.youtube.com/watch?v=Hj_rA0dhr2I)

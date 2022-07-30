@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Data Structures and Algorithms with Coding Challenges",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/jayantasamaddar/algorithms.git",
   "author": "Jayanta Samaddar <jay.s@kollablifestyle.com>",
   "license": "MIT"
