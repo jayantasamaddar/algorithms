@@ -7,8 +7,20 @@ export class ListNode {
 
 export class LinkedList {
   constructor() {
-    this.size = 0;
-    this.head = null;
+    Object.defineProperties(this, {
+      head: {
+        value: null,
+        writable: true,
+        configurable: false,
+        enumerable: true,
+      },
+      size: {
+        value: 0,
+        writable: true,
+        configurable: false,
+        enumerable: false,
+      },
+    });
   }
 
   /** Add an element to the Linked List */

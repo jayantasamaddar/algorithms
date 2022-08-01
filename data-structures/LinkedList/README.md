@@ -1,6 +1,6 @@
 # What is a Linked List?
 
-A Linked List is a data structure where elements are stored in a node. The node contains two pieces of information: 
+A Linked List is a data structure where elements are stored in a node. The node contains two pieces of information:
 
 - The element itself.
 - The reference to the next node.
@@ -32,6 +32,7 @@ Like arrays, linked lists can be used to implement many other data structures.
 
 Linked Lists have some advantages and disadvantages when compared to arrays:
 
+<!-- prettier-ignore -->
 SN. | Arrays      |	Linked Lists 	|
 --- | ---         | ---             |
 1 	| Fixed size  | Dynamic Size	|
@@ -44,8 +45,39 @@ SN. | Arrays      |	Linked Lists 	|
 
 # Properties
 
-**`head`** − (type: property) - Returns the head of the Linked List and all linked nodes.
-**`size`** − (type: property) - Displays the length of the Linked List.
+#### ListNode Properties
+
+- **`val`** - The value of the List Node.
+- **`next`** - The next List Node. The last node in a non-Circular Linked List is always null.
+- **`previous`** - The previous List Node. This is an optional property, only found in Doubly Linked Lists.
+
+We can encapsulate this in a **`ListNode`** class and use the class to create objects:
+
+```
+class ListNode {
+    constructor(val = null, next = null, previous = null) {
+        this.val = val;
+        this.next = next;
+        this.previous = previous;
+    }
+}
+```
+
+#### Linked List Properties
+
+- **`head`** − The head of the Linked List and all linked nodes.
+- **`size`** − The length, i.e. the number of nodes in the Linked List.
+
+We can encapsulate this in a **`LinkedList`** class and use the class to create objects:
+
+```
+class LinkedList {
+    constructor(head = null) {
+        this.head = head;
+        this.size = 0;
+    }
+}
+```
 
 ---
 
@@ -82,7 +114,7 @@ SN. | Arrays      |	Linked Lists 	|
 
 ## Add
 
-#### Building the `add(...elements)` function to add elements to the Linked List:
+#### Building the `add(...elements)` method to add elements to the Linked List:
 
 We will be using the `ListNode` class to create Nodes.
 
@@ -127,7 +159,8 @@ LinkedList.prototype.addFirst = function(element) {
 ## Insert
 
 #### Array - O(n) Insertion Time
-Suppose we have an array, `[1, 3, 13, 21]`. We want to `1` element: `5` at index `2`. 
+
+Suppose we have an array, `[1, 3, 13, 21]`. We want to `1` element: `5` at index `2`.
 We can do that with the splice operation, `array.splice(2, 0, 5)`;
 
 **But how does it work?**
@@ -137,23 +170,16 @@ This can be a costly operation if the number of elements after the index `2` are
 
 #### Linked Lists - O(1) Insertion Time
 
-In Linked Lists, we just need to create a new list Node in memory to hold the value `5` and adjust it's `next` pointer to the previous node's (i.e. node with the value `3`) `next` pointer. Then, the previous node's `next` pointer may be given a new value to point to this new list Node. 
+In Linked Lists, we just need to create a new list Node in memory to hold the value `5` and adjust it's `next` pointer to the previous node's (i.e. node with the value `3`) `next` pointer. Then, the previous node's `next` pointer may be given a new value to point to this new list Node.
 
 Thus, the linked List is sequenced to point to one element after another including this new insertion without any costly insertions. In a Linked List, it is not required that the nodes are contiguous in memory.
 
-Let's try to implement a `LinkedList.prototype.insertAt(index, value)`. 
+Let's try to implement a `LinkedList.prototype.insertAt(index, value)`.
 We will need to create a ListNode using our `ListNode` class, created earlier. We will also reference the LinkedList's `size` property and the `head`.
 
 #### Inserting element into a Linked List at a certain index
 
 ```
-class ListNode {
-    constructor(val = null, next = null) {
-        this.val = val;
-        this.next = next;
-    }
-}
-
 LinkedList.prototype.insertAt = function(index, val) {
     if(index > this.size || index < 0) return;
 
@@ -283,7 +309,7 @@ If we want to pass a Linked List to someone, or programmatically pass a Linked L
 
 So to implement a traversal algorithm on a linked list, we just need a handful of variables. We traverse the linked list by looping through the nodes until currentNode is null. To progress down the loop, we assign the `currentNode` to `currentNode.next` at the end of each iteration. This works similar to the looping of an array where we add +1 to the index to progress down the array.
 
-#### Building a `toArray` method by traversing a linked list and returning the values of the nodes in an array:**
+#### Building a `toArray` method by traversing a linked list and returning the values of the nodes in an array:
 
 ```
 LinkedList.prototype.toArray = function() {
@@ -325,21 +351,13 @@ LinkedList.prototype.forEach = function (callbackFn) {
 
 We have the `Array.prototype.filter(element, index, callbackFn)` method to filter through an array. This traverses through the entire array and filters as per the callback function.
 
-Let's try to implement this same method for our Linked List as, 
+Let's try to implement this same method for our Linked List as,
 `LinkedList.prototype.filter(node, index, callbackFn)`.
 
 Since we are returning a new Linked List, we will require the `Linked List` class. We will also need to refer to the `head` of the linked list we are filtering.
 
-```
-class LinkedList {
-    constructor() {
-        this.head = null;
-        this.size = 0;
-    }
-}
-```
-
 **Method 1 - Building from Scratch**
+
 ```
 LinkedList.prototype.filter = function (callbackFn) {
     if(!typeof callbackFn === "function") {
@@ -359,6 +377,7 @@ LinkedList.prototype.filter = function (callbackFn) {
 ```
 
 **Method 2 - Using the `forEach` method we built earlier**
+
 ```
 LinkedList.prototype.filter = function (callbackFn) {
     if(!typeof callbackFn === "function") {
@@ -611,7 +630,6 @@ The `LinkedList.fromArray(array)` is a static method of the LinkedList class, th
 
 For this implementation, we will use the `LinkedList` class to create a new Linked List. We will also use the earlier created `add` method to add the array elements to the Linked List without any hassles.
 
-
 ```
 class LinkedList {
     constructor() {
@@ -648,13 +666,13 @@ class LinkedList {
 - [2095 - Delete the Middle Node of a Linked List](../../leetcode-challenges/javascript/2095%20-%20deleteMiddle/index.js)
 - [160 - Intersection of Two Linked Lists](../../leetcode-challenges/javascript/160%20-%20Linked%20List%20Intersection/index.js)
 - [206 - Reverse Linked List](../../leetcode-challenges/javascript/206%20-%20Reverse%20Linked%20List/index.js)
+- [234 - Palindrome Linked List](../../leetcode-challenges/javascript/234%20-%20Palindrome%20Linked%20List/index.js)
 - [141 - Linked List Cycle](../../leetcode-challenges/javascript/141%20-%20Linked%20List%20Cycle/index.js)
 - [02 - Add Two Numbers](../../leetcode-challenges/javascript/02%20-%20Add%20Two%20Numbers/index.js)
 - [24 - Swap Nodes in Pairs](../../leetcode-challenges/javascript/24%20-%20swapNodesInPairs/index.js)
 - [382 - Linked List Random Node](../../leetcode-challenges/javascript/382%20-%20Linked%20List%20Random%20Node/index.js)
 - [21 - Merge Two Sorted Linked Lists](../../leetcode-challenges/javascript/21%20-%20mergeTwoSortedLists/index.js)
 - [23 - Merge K Sorted Lists](../../leetcode-challenges/javascript/23%20-%20mergeKLists/index.js)
-
 
 ---
 

@@ -240,4 +240,4 @@ console.log(bst.isBalanced()); // true
 console.log(bst.inOrder()); // [ 3,  5,  6,  7, 9, 17, 20, 21 ]
 console.log(bst.preOrder()); // [ 9,  4,  3,  6, 5, 7, 17, 21, 20 ]
 console.log(bst.postOrder()); // [ 3,  5,  7, 6, 4, 20, 21, 17, 9 ]
-console.log(bst.levelOrder()); // [ 9, 4, 17, 3, 6, 21, 5,  7, 20 ]
+console.log(bst.levelOrder()); // [ 9, 4, 17, 3, 6, 21, 5, 7, 20 ]
