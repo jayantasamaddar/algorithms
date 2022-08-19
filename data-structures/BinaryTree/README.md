@@ -36,6 +36,9 @@
       - [Pre-Order Traversal](#pre-order-traversal)
       - [Post-Order Traversal](#post-order-traversal)
       - [Level-Order Traversal](#level-order-traversal)
+- [List of Solved Binary Tree / Binary Search Tree Algorithms](#list-of-solved-binary-tree--binary-search-tree-algorithms)
+    - [Leetcode](#leetcode)
+- [References](#references)
 
 ---
 
@@ -50,7 +53,13 @@ All Binary Trees have the following characteristics:
 - Each parent node has at most two children.
 - There can only be one single unique path from the root to any node.
 
-The **Binary Search Tree** is one type of a Binary Tree. The **Heap** is an example of another Binary Tree.
+The **Binary Search Tree** is one type of a Binary Tree.
+The **Heap** is an partially ordered Binary Tree, that can be either,
+
+- **Min Heap** - The parent nodes <= child nodes.
+- **Max Heap** - The parent nodes are >= child nodes.
+
+**Trie** and **State-Space Tree** are examples of non-binary trees.
 
 ---
 
@@ -707,3 +716,25 @@ Breadth-first search can be used to solve many problems in graph theory, for exa
 - Implementing parallel algorithms for computing a graph's transitive closure.
 
 ---
+
+# List of Solved Binary Tree / Binary Search Tree Algorithms
+
+### Leetcode
+
+- [704 - Binary Search](../../leetcode-challenges/javascript/704%20-%20Binary%20Search/index.js)
+- [374 - Guess Number Higher or Lower](../../leetcode-challenges/javascript/374%20-%20Guess%20Number%20Higher%20or%20Lower/index.js)
+- [700 - Search in a Binary Search Tree](../../leetcode-challenges/javascript/700%20-%20Search%20in%20a%20BST/index.js)
+- [104 - Maximum Depth of Binary Tree](../../leetcode-challenges/javascript/104%20-%20Maximum%20Depth%20of%20Binary%20Tree/index.js)
+- [111 - Minimum Depth of Binary Tree](../../leetcode-challenges/javascript/111%20-%20Minimum%20Depth%20of%20a%20Binary%20Tree/index.js)
+- [701 - Insert into a Binary Search Tree](../../leetcode-challenges/javascript/701%20-%20Insert%20into%20a%20Binary%20Search%20Tree/index.js)
+- [222 - Count Complete Tree Nodes](../../leetcode-challenges/javascript/222%20-%20Count%20Complete%20Tree%20Nodes/index.js)
+- [450 - Delete Node in a BST](../../leetcode-challenges/javascript/450%20-%20Delete%20Node%20in%20a%20BST/index.js)
+
+---
+
+# References
+
+- [Binary Search Tree - Data Structure Construction](BinarySearchTree.js)
+- **@datastructures-js/binary-search-tree | [Github](https://github.com/datastructures-js/binary-search-tree)**
+- [Binary Tree Algorithms for Technical Interviews by freecodecamp.org](https://www.youtube.com/watch?v=fAAZixBzIAI)
+- [Heap - Data Structure Construction]

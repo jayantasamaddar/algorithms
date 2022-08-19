@@ -669,6 +669,7 @@ class LinkedList {
 - [234 - Palindrome Linked List](../../leetcode-challenges/javascript/234%20-%20Palindrome%20Linked%20List/index.js)
 - [141 - Linked List Cycle](../../leetcode-challenges/javascript/141%20-%20Linked%20List%20Cycle/index.js)
 - [02 - Add Two Numbers](../../leetcode-challenges/javascript/02%20-%20Add%20Two%20Numbers/index.js)
+- [328 - Odd Even List](../../leetcode-challenges/javascript/328%20-%20Odd%20Even%20List/index.js)
 - [24 - Swap Nodes in Pairs](../../leetcode-challenges/javascript/24%20-%20swapNodesInPairs/index.js)
 - [382 - Linked List Random Node](../../leetcode-challenges/javascript/382%20-%20Linked%20List%20Random%20Node/index.js)
 - [21 - Merge Two Sorted Linked Lists](../../leetcode-challenges/javascript/21%20-%20mergeTwoSortedLists/index.js)
