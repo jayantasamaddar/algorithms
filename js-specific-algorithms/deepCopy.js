@@ -1,4 +1,4 @@
-// Helper function: Determine type of input
+/** Helper function: Determine type of input */
 const type = input =>
   Array.isArray(input)
     ? 'array'
@@ -8,7 +8,7 @@ const type = input =>
     ? 'function'
     : 'primitive';
 
-// Recursively deep copies objects and arrays.
+/** Recursively deep copies objects and arrays */
 function deepCopy(input) {
   if (type(input) === 'primitive') return input;
   else if (type(input) === 'array') {
@@ -18,16 +18,18 @@ function deepCopy(input) {
     const result = {};
     for (let i = 0; i < entries.length; i++) {
       const [key, value] = entries[i];
-      result[key] = deepCopy(value);
+      if (type(value) === 'function') {
+        // Keeps original function as reference and binds result to `this`
+        result[key] = input[key].bind(result);
+      } else result[key] = deepCopy(value);
     }
     return result;
-  } else {
-    // Doesn't deep copy functions
   }
 }
 
+/************************************************************/
 /** Testing */
-
+/************************************************************/
 const a = {
   en: 'Bye',
   de: 'Tschüss',
@@ -37,31 +39,35 @@ const a = {
     help: {
       tutorial: 'Learn JavaScript',
       endgame: true,
-      tutorialName: function () {
-        return this.tutorial;
+      tutorialName: function (name) {
+        return `${name}, you have task remaining: ${this.tutorial}!`;
       },
     },
   },
 };
 
-const b = [
-  1,
-  2,
-  3,
-  4,
-  [25, 26],
-  {
-    many: 'laughs',
-    help: 'me',
-    test: 'another',
-  },
-];
-
 const newA = deepCopy(a);
-const newB = deepCopy(b);
 
-console.log(JSON.stringify(newA));
-// Result: {"en":"Bye","de":"Tschüss","arrayTest":[25,26,{"1":"one","2":"two "}],"lol":{"many":"laughs","help":{"tutorial":"Learn JavaScript","endgame":true}}}
+console.log(newA.lol.help.tutorialName('John')); // 'John, you have task remaining: Learn JavaScript!'
+newA.lol.help.tutorial = 'Learn Python'; // Changes: 'Learn JavaScript' to 'Learn Python'
 
-console.log(JSON.stringify(newB));
-// Result: [1,2,3,4,[25,26],{"many":"laughs","help":"me","test":"another"}]
+console.log(newA.lol.help.tutorialName('Terry')); // 'Terry, you have task remaining: Learn Python!'
+
+console.log(newA);
+/**
+ * Prints the following object
+ * -----------------------------
+{
+  en: 'Bye',
+  de: 'Tschüss',
+  arrayTest: [ 25, 26, { '1': 'one', '2': 'two ' } ],
+  lol: {
+    many: 'laughs',
+    help: {
+      tutorial: 'Learn Python',
+      endgame: true,
+      tutorialName: [Function: bound tutorialName]
+    }
+  }
+}
+ */
